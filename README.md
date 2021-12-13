@@ -40,4 +40,16 @@ Our websites files will be stored in `/var/www/`. So we will create two new fold
 
 By default, a website's main page is named `index.html`. So we will create an `index.html` file for each of our websites.
 
-The next step is to configure the websites with apache. To do so, we create two new configuration `/etc/apache2/sites-available`. (We can duplicate the default file).
+The next step is to configure the websites with apache. To do so, we create two new configuration files (Virtualhosts) `/etc/apache2/sites-available`. (We can duplicate the default file).
+
+The configuration file similarly to the following:
+
+![2  virtual host](https://user-images.githubusercontent.com/56129562/145835609-3e837517-527e-4fac-b238-9b6b13ef0a9c.png)
+
+  - `ServerName 10.0.2.15` : This virtual host will only be called for the address `10.0.2.15`.
+  - `ServerAlias 10.0.2.15`: We can specify here the subdomains for which this virtual host can be called.
+  - `<Directory "/var/www/medmachrouh.me">`: Defines certain rules for the directory of the Virtual host.
+  - `DocumentRoot "/var/www/medmachrouh.me"`: We will place the site files in the directory `/var/www/medmachrouh.me`.
+
+We apply the same configuration for the second website.
+
