@@ -53,3 +53,9 @@ The configuration file similarly to the following:
 
 We apply the same configuration for the second website.
 
+Now, for the website to work we have to enable its vhost. To do so, we use the following command: `a2ensite medmachrouh.me.conf`
+
+4-**Testing**:
+After restarting the apache2 service, we type the address `10.0.2.15` in a browser and our website appears. ✅
+
+![f  test 1](https://user-images.githubusercontent.com/56129562/145837273-1ca2581e-988f-400d-8235-e6b57d4838f9.png)
