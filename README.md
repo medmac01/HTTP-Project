@@ -42,6 +42,8 @@ By default, a website's main page is named `index.html`. So we will create an `i
 
 The next step is to configure the websites with apache. To do so, we create two new configuration files (Virtualhosts) `/etc/apache2/sites-available`. (We can duplicate the default file).
 
+> `cp 000-default.conf medmachrouh.me.conf && cp 000-default.conf monsefber.conf`
+
 The configuration file similarly to the following:
 
 ![2  virtual host](https://user-images.githubusercontent.com/56129562/145835609-3e837517-527e-4fac-b238-9b6b13ef0a9c.png)
@@ -59,3 +61,30 @@ Now, for the website to work we have to enable its vhost. To do so, we use the f
 After restarting the apache2 service, we type the address `10.0.2.15` in a browser and our website appears. ✅
 
 ![f  test 1](https://user-images.githubusercontent.com/56129562/145837273-1ca2581e-988f-400d-8235-e6b57d4838f9.png)
+
+
+# Part II: HTTP and DNS
+In order to make our website's address easy to remember, we will associate it with a domain name which is `medmac.me` in this case.
+First, let's create the configuration files for our DNS zone.
+> `cp /etc/bind/db.127 /etc/bind/db.2.0.10 && cp /etc/bind/db.local /etc/bind/db.medmac.me`
+
+Our files should look like this:
+
+**`db.medmac.me`** :
+
+![part II forward](https://user-images.githubusercontent.com/56129562/145838255-447d2a3d-40cb-4500-ae6c-47266a624456.png)
+
+**`db.2.0.10`**:
+![part II reverse](https://user-images.githubusercontent.com/56129562/145838342-52850c94-e0f6-4707-a03c-4ebd0bad8eb5.png)
+
+
+🧪 **Testing**:
+After restarting the `named` service. We access our website by it's new domain name `medmac.me`, the same website shows up ✅.
+
+![part II test 2](https://user-images.githubusercontent.com/56129562/145838875-2e25febf-d372-4a45-9b06-c9a22bb498cb.png)
+
+Using curl we get the plain index.html file that we created already.
+
+![test2](https://user-images.githubusercontent.com/56129562/145839007-362e0444-2ffb-43fc-8ace-c5229bf1a74e.png)
+
+
