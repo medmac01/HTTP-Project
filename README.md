@@ -88,3 +88,32 @@ Using curl we get the plain index.html file that we created already.
 ![test2](https://user-images.githubusercontent.com/56129562/145839007-362e0444-2ffb-43fc-8ace-c5229bf1a74e.png)
 
 
+# Part III: Secure a repository
+In this part, we will show how to password protect the repository on our web server.
+
+**1.Creating the password file**
+To get started, we need to create the file that will store the passwords needed to access our restricted content, we will use a utility called htpasswd
+In this case, we will add the admin user to the file .htpasswd using the following command:
+> `htpasswd -c /etc/apache2/.htpasswd admin`
+
+
+We will be asked to provide a password for the admin account.
+
+After executing the command, an `.htpasswd` will be created in the `/etc/apache2/` folder. When opening the file, here is what it looks like:  `admin:$apr1$MIrlEJvs$y2Y1DBpLCB70B55CC.wdm0`
+
+**2.Configuring Access Control within the Virtual Host Definition**
+Our mission here is to edit the Apache configuration and add our password protection to the virtual host file. So we open our configuration file `medmachrouh.me.conf` 
+
+Within this `directory` block, specify that we wish to set up `Basic` authentication. For the `AuthName`, choose a message that will be displayed to the user when prompting for credentials. Use the `AuthUserFile` directive to point Apache to the password file we created (which is `.htpasswd`). Finally, we will require a `valid-user` to access this resource, which means anyone who can verify their identity with a password will be allowed in.
+
+![image](https://user-images.githubusercontent.com/56129562/146222670-e1a2d19e-c648-4e60-b920-2a1e9d3beb3b.png)
+
+
+
+
+
+**🧪 Testing**
+When trying to access our website `medmac.me`, a login prompt shows up. That means we have to provide a user and a password in order to show the content.
+![image](https://user-images.githubusercontent.com/56129562/146222101-5474acae-0a80-4a55-850b-bf9a448c7ebd.png)
+
+
