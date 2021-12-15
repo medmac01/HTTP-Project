@@ -117,6 +117,11 @@ When trying to access our website `medmac.me`, a login prompt shows up. That mea
 ![image](https://user-images.githubusercontent.com/56129562/146222101-5474acae-0a80-4a55-850b-bf9a448c7ebd.png)
 
 
-⚠️ **Warning**: Since we are using basic authentication, the credentials are not encrypted. When logging in, we could easily extract the password from a Wireshark capture as shown below.
+⚠️ **Warning**: Since we are using basic authentication, the credentials are not encrypted. When logging in, we can easily extract the password from a Wireshark capture as shown below.
 
 ![image](https://user-images.githubusercontent.com/56129562/146225030-6c588377-284b-44bf-8f47-0bfdd4572ffe.png)
+
+*To overcome this issue, we have to enable 🔒 **HTTPS** on our web server so that the exchanged traffic will be encrypted and nearly impossible to crack.*
+
+# Part IV: Configuration with .htaccess
+
