@@ -142,4 +142,18 @@ Within this file, specify the arguments that we added earlier. The file should l
 
 We save the file and restart the service.
 
+**2.Configuring Apache with htdigest**
+
+Another way to store users and passwords is to use Digest Authentication. Digest authentication is applied in Apache to improve the security of passwords by using MD5 encrypted passwords.
+In this case, we will add the admin user to the file `users-digest` using the following command: `htdigest -c /etc/apache2/digest-users systemadmin admin`.
+We will be asked to provide a password for the admin account.
+
+Inside the `.htaccess` file, we need to specify the type of authentication to `Digest`.
+
+```
+AuthType Digest
+AuthName Login 
+AuthDigestFile /etc/apache2/digest-users
+```
+
 
