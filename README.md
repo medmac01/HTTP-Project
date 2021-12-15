@@ -125,3 +125,21 @@ When trying to access our website `medmac.me`, a login prompt shows up. That mea
 
 # Part IV: Configuration with .htaccess
 
+The .htaccess files are Apache configuration files, allowing to define rules in a directory and in all its subdirectories (which do not have such a file inside). They can be used to protect a directory with a password, to change the name or extension of the index page, or to prohibit access to the directory.
+
+The .htaccess file is placed in the directory in which it must act. It thus acts on the permissions of the directory that contains it and of all its sub-directories. Another .htaccess file can be placed in a subdirectory of a directory already controlled by an .htaccess file. The .htaccess file in the parent directory remains in “activity” until the functionality is rewritten.
+
+**1.Configuring Apache with .htaccess**
+Inside the `<Directory>` block for the `/var/www` directory that holds our document root. We have to turn on `.htaccess` processing by changing the `AllowOverride` from “None” to “All”:
+
+![image](https://user-images.githubusercontent.com/56129562/146226879-6cb00952-cbdb-4b39-82a5-482fb9daf103.png)
+
+After that, we need to create an `.htaccess` file inside the `/var/www/medmachrouh.me` folder. 
+
+Within this file, specify the arguments that we added earlier. The file should look like this:
+
+![image](https://user-images.githubusercontent.com/56129562/146227928-d8bc984f-0ecf-4c32-8a27-dd2439da62f7.png)
+
+We save the file and restart the service.
+
+
