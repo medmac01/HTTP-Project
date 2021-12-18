@@ -163,3 +163,38 @@ Now let's try to login on our website and intercept the packets using Wireshark.
 
 ⚠️ **Warning** : The MD5 algorithm is no longer considered safe to store passwords, as it's coming more and more easy to crack them. So the safest solution actually is to use **HTTPS** to ensure the encryption of data transmitted.
 
+# Part IV: Personal Directories
+
+On systems with multiple users, each user can be permitted to have a web site in their home directory. In this part, we will discover how to do it in apache.
+First we need to create some users.
+Since we will use a basic authentication, we will create users using `htpasswd` tool.
+> `htpasswd -c /etc/apache2/.htpasswd med`
+> `htpasswd -c /etc/apache2/.htpasswd oussama`
+
+We will be prompted to enter a password for each user.
+
+To only allow me (med) to access a specific directory (in this case `medmachrouh.me`), then i need to specify it in the virtualhost configuration. More precisely in the `Require` directive.
+
+```
+        ServerAdmin webmaster@localhost
+        ServerName www.medmac.me
+        ServerAlias 10.0.2.15
+        <Directory "/var/www/medmachrouh.me>
+                AuthType Basic
+                AuthName "Restricted Content"
+                AuthUserFile "/etc/apache2/.htpasswd"
+                require user med
+        </Directory>
+        DocumentRoot /var/www/medmachrouh.me
+```
+We save and restart the service.
+
+**Testing**
+
+We can only access `medmachrouh.me` directory using the user `med`.
+![image](https://user-images.githubusercontent.com/56129562/146646353-cc5c7cfc-38f2-4a34-bdd3-cddd0e42f974.png)
+
+![image](https://user-images.githubusercontent.com/56129562/146646382-54afbecc-a60f-4d33-8465-7ed3dcbfbbd9.png)
+
+
+
