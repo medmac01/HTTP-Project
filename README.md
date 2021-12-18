@@ -156,4 +156,10 @@ AuthName Login
 AuthDigestFile /etc/apache2/digest-users
 ```
 
+Now let's try to login on our website and intercept the packets using Wireshark.
+![image](https://user-images.githubusercontent.com/56129562/146645488-f315ef43-49b4-419f-83d9-bdb4627c5486.png)
+
+*This time we couldn't get the clear password, instead we got a MD5 hash value*
+
+⚠️ **Warning** : The MD5 algorithm is no longer considered safe to store passwords, as it's coming more and more easy to crack them. So the safest solution actually is to use **HTTPS** to ensure the encryption of data transmitted.
 
